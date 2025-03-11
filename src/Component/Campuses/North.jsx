@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import img1 from "../../assets/campuses/aryabhatt.png"; 
 import img2 from "../../assets/campuses/dwarka.png"; 
 import img3 from "../../assets/campuses/okhla2.png"; 
@@ -7,6 +8,8 @@ import img5 from "../../assets/campuses/siri.png";
 import img6 from "../../assets/campuses/rohini.png"; 
 
 const North = () => {
+  const navigate = useNavigate();
+
   const locations = [
     { 
       id: 1, 
@@ -48,39 +51,43 @@ const North = () => {
       id: 4, 
       img: img4, 
       name: "Aryabhatt DSEU Campus",
-      type: "Management Institute",
-      address: "Main Road, Shakarpur, Delhi-110092",
-      email: "admissions@sbs.edu.in",
-      phone: "+91-11-2512XXXX",
-      website: "www.sbs.edu.in",
-      courses: ["BBA", "MBA", "B.Com", "M.Com"],
-      facilities: ["Conference Hall", "Digital Library", "Computer Labs", "Placement Cell"]
+      type: "Engineering Institute",
+      address: "Rohini Sector 4, Delhi-110085",
+      email: "contact@aryabhatt.edu.in",
+      phone: "+91-11-2578XXXX",
+      website: "www.aryabhatt.edu.in",
+      courses: ["B.Tech", "Diploma", "M.Tech"],
+      facilities: ["Advanced Labs", "Workshops", "Innovation Hub"]
     },
     { 
       id: 5, 
       img: img5, 
       name: "DSEU Wazirpur Campus",
-      type: "Management Institute",
-      address: "Main Road, Shakarpur, Delhi-110092",
-      email: "admissions@sbs.edu.in",
-      phone: "+91-11-2512XXXX",
-      website: "www.sbs.edu.in",
-      courses: ["BBA", "MBA", "B.Com", "M.Com"],
-      facilities: ["Conference Hall", "Digital Library", "Computer Labs", "Placement Cell"]
+      type: "Technology & IT College",
+      address: "Wazirpur Industrial Area, Delhi-110052",
+      email: "info@dseuwazirpur.edu.in",
+      phone: "+91-11-2912XXXX",
+      website: "www.dseuwazirpur.edu.in",
+      courses: ["B.Sc IT", "M.Sc IT", "Cybersecurity"],
+      facilities: ["Hackathon Lab", "AI Research Center", "Digital Library"]
     },
     { 
       id: 6, 
       img: img6, 
       name: "Kasturba DSEU Campus",
-      type: "Management Institute",
-      address: "Main Road, Shakarpur, Delhi-110092",
-      email: "admissions@sbs.edu.in",
-      phone: "+91-11-2512XXXX",
-      website: "www.sbs.edu.in",
-      courses: ["BBA", "MBA", "B.Com", "M.Com"],
-      facilities: ["Conference Hall", "Digital Library", "Computer Labs", "Placement Cell"]
+      type: "Design & Fashion Institute",
+      address: "South Delhi, Near Green Park, Delhi-110016",
+      email: "contact@kasturbadesign.edu.in",
+      phone: "+91-11-2945XXXX",
+      website: "www.kasturbadesign.edu.in",
+      courses: ["Fashion Design", "Textile Engineering", "Interior Design"],
+      facilities: ["Design Studios", "Fabric Labs", "Fashion Ramp"]
     },
   ];
+
+  const handleRedirect = (id) => {
+    navigate(`/campus/${id}`);
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
@@ -99,38 +106,30 @@ const North = () => {
           {locations.map((location) => (
             <div 
               key={location.id}
-              className="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden w-full max-w-4xl group hover:scale-[1.02] transition-all duration-300"
+              onClick={() => handleRedirect(location.id)}
+              className="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden w-full max-w-4xl group hover:scale-[1.02] transition-all duration-300 cursor-pointer"
             >
-
-              <div className="md:w-2/5 relative ">
+              <div className="md:w-2/5 relative">
                 <img
                   src={location.img}
                   alt={location.name}
                   className="w-full h-64 md:h-full min-h-[18rem] object-cover transform group-hover:scale-103 transition-transform duration-500"
                 />
               </div>
-              
+
               <div className="md:w-3/5 p-6 bg-white group-hover:bg-blue-50 transition-colors duration-300">
-                <div className="flex flex-col items-center text-center">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-2 transition-colors duration-300">
-                    {location.name}
-                  </h2>
-                  {/* <p className="text-gray-600 font-semibold mb-4">
-                    {location.type}
-                  </p> */}
-                  
-                  <div className="space-y-3 w-full">
-                    <div>
-                      <h3 className="font-semibold text-gray-700">Address:</h3>
-                      <p className="text-gray-600">{location.address}</p>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-700">Contact:</h3>
-                      <p className="text-gray-600">Email: {location.email}</p>
-                      <p className="text-gray-600">Phone: {location.phone}</p>
-                      <p className="text-gray-600">Website: {location.website}</p>
-                    </div>
-                  </div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-2 transition-colors duration-300">
+                  {location.name}
+                </h2>
+                <p className="text-gray-600 font-semibold mb-4">{location.type}</p>
+                
+                <div className="space-y-2">
+                  <p className="text-gray-700"><strong>Address:</strong> {location.address}</p>
+                  <p className="text-gray-700"><strong>Email:</strong> {location.email}</p>
+                  <p className="text-gray-700"><strong>Phone:</strong> {location.phone}</p>
+                  <p className="text-gray-700"><strong>Website:</strong> {location.website}</p>
+                  <p className="text-gray-700"><strong>Courses:</strong> {location.courses.join(", ")}</p>
+                  <p className="text-gray-700"><strong>Facilities:</strong> {location.facilities.join(", ")}</p>
                 </div>
               </div>
             </div>
